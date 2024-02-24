@@ -1,8 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import {ApolloClient, ApolloProvider, HttpLink, InMemoryCache} from '@apollo/client'
+import { Provider } from 'react-redux'
+import { store } from "./redux";
 import App from './App'
 import './index.css'
+
 
 // npm i @apollo/client graphql
 // npm install redux react-redux @types/react-redux
@@ -24,7 +27,9 @@ const client = new ApolloClient({
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-       <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </ApolloProvider>
   </React.StrictMode>,
 )

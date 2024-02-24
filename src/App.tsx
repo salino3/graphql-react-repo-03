@@ -7,14 +7,15 @@ function App() {
 
   return (
     <div className="App">
-     <details>
-      <summary>Home</summary>
-      <div>
-        
-      </div>
-     </details>
+      <h1>Hola</h1>
+      <details>
+        <summary>Home</summary>
+        <div>
+          <h2>Hola</h2>
+        </div>
+      </details>
     </div>
-  )
+  );
 }
 
 export default App
