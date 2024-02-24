@@ -5,6 +5,10 @@ import App from './App'
 import './index.css'
 
 // npm i @apollo/client graphql
+// npm install redux react-redux @types/react-redux
+// npm install @reduxjs/toolkit @types/react-redux
+
+
 // rd /s /q .git
 
 
