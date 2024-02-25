@@ -1,9 +1,12 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import { useProduct } from './graphql';
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const { data, error, loading } = useProduct();
+
+    console.log("data", data);
+
 
   return (
     <div className="App">
