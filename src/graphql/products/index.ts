@@ -1,3 +1,3 @@
 export * from './mutations';
 export * from "./queries";
-export * from "./persons-hooks";
+export * from "./products-hooks";
