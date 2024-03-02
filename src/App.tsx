@@ -7,6 +7,7 @@ function App() {
     allResult: { data, error, loading },
     getOneProduct,
     createProduct,
+    deleteOneProduct,
   } = useProducts();
 
   const {
@@ -68,7 +69,13 @@ function App() {
         <div>
           <button onClick={createNewProduct}>Create your product</button> <br />{" "}
           <br />
-          <button onClick={createNewProduct}>Delete a product</button>
+          <button
+            onClick={() =>
+              deleteOneProduct("f1d989a3-1b89-4331-aeee-a7f61bff4dfe")
+            }
+          >
+            Delete a product
+          </button>
         </div>
       </details>
     </div>

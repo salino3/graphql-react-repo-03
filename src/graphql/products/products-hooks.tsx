@@ -1,7 +1,7 @@
 import React from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { ALL_PRODUCTS, GET_PRODUCT } from "./queries";
-import { CREATE_PRODUCT } from "./mutations";
+import { CREATE_PRODUCT, DELETE_PRODUCT } from "./mutations";
 import { ProductProps, initialState } from "@/redux";
 
 export const useProducts = () => {
@@ -27,7 +27,7 @@ export const useProducts = () => {
       onError: (error) => {
         const errorMessage = error.graphQLErrors[0].message;
         setErrorMsg(errorMessage);
-        console.log("here", errorMessage);
+        console.log("error", errorMessage);
       },
       onCompleted: (data) => {
         console.log("newObject: ", data.addProduct);
@@ -57,5 +57,22 @@ export const useProducts = () => {
     };
   };
 
-  return { allResult, getOneProduct, createProduct };
+  //
+  const deleteProduct = useMutation(DELETE_PRODUCT, {
+    onError: (error) => {
+      const errorMessage = error.graphQLErrors[0].message;
+      console.log("error", errorMessage);
+    },
+    onCompleted: (data) => {
+      console.log("deleted: ", data.deleteProduct);
+    },
+    refetchQueries: [{ query: ALL_PRODUCTS }],
+    errorPolicy: "all",
+  })[0];
+
+  const deleteOneProduct = (id: string) => {
+    deleteProduct({ variables: { id: id } });
+  };
+
+  return { allResult, getOneProduct, createProduct, deleteOneProduct };
 };
