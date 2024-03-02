@@ -1,18 +1,43 @@
 import React from "react";
 import { useMutation, useQuery } from "@apollo/client";
+import { useLazyQuery } from "@apollo/client";
 import { ALL_PRODUCTS, GET_PRODUCT } from "./queries";
 import { CREATE_PRODUCT, DELETE_PRODUCT, UPDATE_PRODUCT } from "./mutations";
 import { ProductProps, initialState } from "@/redux";
 
 export const useProducts = () => {
-  const allResult = useQuery(ALL_PRODUCTS);
+  const allResult = useQuery(ALL_PRODUCTS, {
+    errorPolicy: "all",
+    onError: (error) => {
+      const errorMessage = error.graphQLErrors[0].message;
+      console.log("error", errorMessage);
+    },
+    onCompleted: (data) => {
+      console.log("OK>>", data);
+    },
+  });
 
-  const getOneProduct = (id: string) => {
-    return useQuery(GET_PRODUCT, {
-      variables: { id: id },
+  //
+  const getOneProduct = () => {
+    const [currentProduct, setCurrentProduct] = React.useState<ProductProps>(
+      initialState?.product
+    );
+    const [getProduct] = useLazyQuery(GET_PRODUCT, {
+      errorPolicy: "all",
+      onError: (error) => {
+        const errorMessage = error.message;
+        console.log("error", errorMessage);
+      },
+      onCompleted: (data) => {
+        setCurrentProduct(data?.getProduct);
+        console.log("Product reached: ", data?.getProduct);
+      },
     });
+
+    return { currentProduct, getProduct };
   };
 
+  //
   const createProduct = () => {
     const [errorMsg, setErrorMsg] = React.useState(null);
     const [modalMsg, setModalMsg] = React.useState<string | null>(null);
@@ -75,8 +100,9 @@ export const useProducts = () => {
   };
 
   //
-
   const [updateProduct] = useMutation(UPDATE_PRODUCT, {
+    errorPolicy: "all",
+
     onError: (error) => {
       const errorMessage = error.graphQLErrors[0].message;
       console.log("Error: ", errorMessage);

@@ -5,6 +5,7 @@ import "./App.scss";
 function App() {
   const {
     allResult: { data, error, loading },
+
     getOneProduct,
     createProduct,
     deleteOneProduct,
@@ -19,6 +20,8 @@ function App() {
     clearModal,
     newUserData,
   } = createProduct();
+
+  const { currentProduct, getProduct } = getOneProduct();
 
   if (error) {
     return <h1 style={{ color: "red" }}>{error.message}</h1>;
@@ -57,13 +60,20 @@ function App() {
     company: "Wow!",
   };
 
-  console.log("data", data);
   const createNewProduct = () => {
     addProduct({
       variables: myObj,
     });
   };
 
+  const hanldeGetProduct = () => {
+    getProduct({
+      variables: {
+        id: "7096f0bb-6c10-459d-acab-ef7762fc6618",
+      },
+    });
+  };
+  console.log("currentProduct", currentProduct);
   return (
     <div className="App">
       <Notify color="green" modalMessage={modalMsg} />
@@ -90,6 +100,8 @@ function App() {
           <button onClick={() => updateDataProduct(myObjUpdate)}>
             Update a product
           </button>
+          <br /> <br />
+          <button onClick={hanldeGetProduct}>Get a product</button>
         </div>
       </details>
     </div>
