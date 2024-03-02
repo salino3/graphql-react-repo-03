@@ -4,17 +4,17 @@ import "./App.css";
 function App() {
   const {
     allResult: { data, error, loading },
-    createProduct,
+    getOneProduct,
+    // createProduct,
   } = useProducts();
 
-  const { product, errorMsg, clearError } = createProduct();
+  // const { product, errorMsg, clearError, clearModal } = createProduct();
 
   if (error) {
     return <h1 style={{ color: "red" }}>{error.message}</h1>;
   }
 
   if (loading) {
-    console.log("data", data);
     return (
       <h2 style={{ color: "yellow", fontWeight: "600", fontSize: "48px" }}>
         Loading...
@@ -22,9 +22,22 @@ function App() {
     );
   }
 
-  if (errorMsg) {
-    clearError();
-  }
+  // if (errorMsg) {
+  //   clearError();
+  // }
+
+  console.log("data", data);
+  const createNewProduct = () => {
+    // product({
+    //   variables: {
+    //     name: "Tercer producto",
+    //     code: "AZZZ23",
+    //     price: 20,
+    //     quantity: 50,
+    //     company: "Jannone",
+    //   },
+    // });
+  };
 
   return (
     <div className="App">
@@ -33,6 +46,9 @@ function App() {
         <summary>Home</summary>
         <div>
           <h2>Hola</h2>
+        </div>
+        <div>
+          <button onClick={createNewProduct}>Create you product</button>
         </div>
       </details>
     </div>
