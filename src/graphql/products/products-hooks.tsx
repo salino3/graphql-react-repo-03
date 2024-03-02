@@ -2,6 +2,7 @@ import React from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { ALL_PRODUCTS, GET_PRODUCT } from "./queries";
 import { CREATE_PRODUCT } from "./mutations";
+import { ProductProps, initialState } from "@/redux";
 
 export const useProducts = () => {
   const allResult = useQuery(ALL_PRODUCTS);
@@ -15,6 +16,9 @@ export const useProducts = () => {
   const createProduct = () => {
     const [errorMsg, setErrorMsg] = React.useState(null);
     const [modalMsg, setModalMsg] = React.useState<string | null>(null);
+    const [newUserData, setNewUserData] = React.useState<ProductProps>(
+      initialState?.product
+    );
 
     const [addProduct] = useMutation(CREATE_PRODUCT, {
       refetchQueries: [{ query: ALL_PRODUCTS }],
@@ -25,8 +29,9 @@ export const useProducts = () => {
         setErrorMsg(errorMessage);
         console.log("here", errorMessage);
       },
-      onCompleted: () => {
-        console.log("Refetched user list");
+      onCompleted: (data) => {
+        console.log("newObject: ", data.addProduct);
+        setNewUserData(data.addProduct);
         setModalMsg("Product created!");
       },
     });
@@ -42,7 +47,14 @@ export const useProducts = () => {
         setErrorMsg(null);
       }, 5000);
     };
-    return { addProduct, errorMsg, clearError, modalMsg, clearModal };
+    return {
+      addProduct,
+      errorMsg,
+      clearError,
+      modalMsg,
+      clearModal,
+      newUserData,
+    };
   };
 
   return { allResult, getOneProduct, createProduct };

@@ -15,6 +15,20 @@ export const CREATE_PRODUCT = gql`
       price: $price
       company: $company
     ) {
+      id
+      name
+      quantity
+      code
+      price
+      company
+    }
+  }
+`;
+
+export const DELETE_PRODUCT = gql`
+  mutation deleteProduct($id: String!) {
+    deleteProduct(id: $id) {
+      id
       name
       quantity
       code

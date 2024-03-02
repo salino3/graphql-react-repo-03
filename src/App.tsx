@@ -9,8 +9,14 @@ function App() {
     createProduct,
   } = useProducts();
 
-  const { addProduct, errorMsg, clearError, modalMsg, clearModal } =
-    createProduct();
+  const {
+    addProduct,
+    errorMsg,
+    clearError,
+    modalMsg,
+    clearModal,
+    newUserData,
+  } = createProduct();
 
   if (error) {
     return <h1 style={{ color: "red" }}>{error.message}</h1>;
@@ -55,10 +61,14 @@ function App() {
       <details>
         <summary>Home</summary>
         <div>
-          <h2>Hola</h2>
+          <h2>
+            Hola - {newUserData && newUserData?.id ? newUserData?.id : "ID"}
+          </h2>
         </div>
         <div>
-          <button onClick={createNewProduct}>Create your product</button>
+          <button onClick={createNewProduct}>Create your product</button> <br />{" "}
+          <br />
+          <button onClick={createNewProduct}>Delete a product</button>
         </div>
       </details>
     </div>

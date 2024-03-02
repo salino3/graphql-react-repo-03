@@ -17,7 +17,10 @@ export const Notify: React.FC<NotifyProps> = ({
   if (!modalMessage) return null;
 
   return (
-    <div className={`rootModal ${styles}`}>
+    <div
+      className={`rootModal 
+    ${styles}`}
+    >
       {children ? children : <h3 style={{ color }}>{modalMessage}</h3>}
     </div>
   );
