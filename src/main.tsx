@@ -1,19 +1,21 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import {ApolloClient, ApolloProvider, HttpLink, InMemoryCache} from '@apollo/client'
-import { Provider } from 'react-redux'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import {
+  ApolloClient,
+  ApolloProvider,
+  HttpLink,
+  InMemoryCache,
+} from "@apollo/client";
+import { Provider } from "react-redux";
 import { store } from "./redux";
-import App from './App'
-import './index.css'
-
+import App from "./App";
+import "./index.scss";
 
 // npm i @apollo/client graphql
 // npm install redux react-redux @types/react-redux
 // npm install @reduxjs/toolkit @types/react-redux
 
-
 // rd /s /q .git
-
 
 const client = new ApolloClient({
   connectToDevTools: true,
@@ -23,13 +25,12 @@ const client = new ApolloClient({
   }),
 });
 
-
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <ApolloProvider client={client}>
       <Provider store={store}>
         <App />
       </Provider>
     </ApolloProvider>
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);

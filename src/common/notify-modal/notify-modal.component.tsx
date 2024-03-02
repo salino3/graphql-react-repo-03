@@ -1,23 +1,24 @@
 import React from "react";
+import "./notify-modal.styles.scss";
 
-export const Notify: React.FC<string> = (errorMessage) => {
-  if (!errorMessage) return null;
+interface NotifyProps {
+  modalMessage: string | null;
+  color: string;
+  styles?: string;
+  children?: React.ReactNode;
+}
+
+export const Notify: React.FC<NotifyProps> = ({
+  modalMessage,
+  color,
+  styles,
+  children,
+}) => {
+  if (!modalMessage) return null;
 
   return (
-    <div
-      style={{
-        color: "red",
-        position: "fixed",
-        fontSize: "42px",
-        fontWeight: 600,
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        width: "100%",
-        textAlign: "center",
-      }}
-    >
-      {errorMessage}
+    <div className={`rootModal ${styles}`}>
+      {children ? children : <h3 style={{ color }}>{modalMessage}</h3>}
     </div>
   );
 };

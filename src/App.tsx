@@ -1,5 +1,6 @@
 import { useProducts } from "./graphql";
-import "./App.css";
+import { Notify } from "./common";
+import "./App.scss";
 
 function App() {
   const {
@@ -35,7 +36,7 @@ function App() {
     name: "Tercer producto",
     code: "AZZZ23",
     price: 20,
-    quantity: 50,
+    quantity: 100,
     company: "Zanulo",
   };
 
@@ -48,6 +49,8 @@ function App() {
 
   return (
     <div className="App">
+      <Notify color="green" modalMessage={modalMsg} />
+
       <h1>Hola</h1>
       <details>
         <summary>Home</summary>
@@ -55,7 +58,7 @@ function App() {
           <h2>Hola</h2>
         </div>
         <div>
-          <button onClick={createNewProduct}>Create you product</button>
+          <button onClick={createNewProduct}>Create your product</button>
         </div>
       </details>
     </div>

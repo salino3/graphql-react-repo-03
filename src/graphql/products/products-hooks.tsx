@@ -14,7 +14,7 @@ export const useProducts = () => {
 
   const createProduct = () => {
     const [errorMsg, setErrorMsg] = React.useState(null);
-    const [modalMsg, setModalMsg] = React.useState<boolean>(false);
+    const [modalMsg, setModalMsg] = React.useState<string | null>(null);
 
     const [addProduct] = useMutation(CREATE_PRODUCT, {
       refetchQueries: [{ query: ALL_PRODUCTS }],
@@ -27,14 +27,14 @@ export const useProducts = () => {
       },
       onCompleted: () => {
         console.log("Refetched user list");
-        setModalMsg(true);
+        setModalMsg("Product created!");
       },
     });
 
     const clearModal = () => {
       setTimeout(() => {
-        setModalMsg(false);
-      }, 3000);
+        setModalMsg(null);
+      }, 2000);
     };
 
     const clearError = () => {
