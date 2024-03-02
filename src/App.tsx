@@ -8,7 +8,8 @@ function App() {
     createProduct,
   } = useProducts();
 
-  const { addProduct, errorMsg, clearError, clearModal } = createProduct();
+  const { addProduct, errorMsg, clearError, modalMsg, clearModal } =
+    createProduct();
 
   if (error) {
     return <h1 style={{ color: "red" }}>{error.message}</h1>;
@@ -24,6 +25,10 @@ function App() {
 
   if (errorMsg) {
     clearError();
+  }
+
+  if (modalMsg) {
+    clearModal();
   }
 
   const myObj = {
