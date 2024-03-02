@@ -15,7 +15,7 @@ export const useProducts = () => {
     const [errorMsg, setErrorMsg] = React.useState(null);
     const [modalMsg, setModalMsg] = React.useState<boolean>(false);
 
-    const [product] = useMutation(CREATE_PRODUCT, {
+    const [addProduct] = useMutation(CREATE_PRODUCT, {
       refetchQueries: [{ query: ALL_PRODUCTS }],
       onError: (error) => {
         const errorMessage = error.graphQLErrors[0].message;
@@ -39,7 +39,7 @@ export const useProducts = () => {
         setErrorMsg(null);
       }, 5000);
     };
-    return { product, errorMsg, clearError, clearModal };
+    return { addProduct, errorMsg, clearError, clearModal };
   };
 
   return { allResult, getOneProduct, createProduct };

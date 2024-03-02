@@ -8,7 +8,7 @@ function App() {
     createProduct,
   } = useProducts();
 
-  const { product, errorMsg, clearError, clearModal } = createProduct();
+  const { addProduct, errorMsg, clearError, clearModal } = createProduct();
 
   if (error) {
     return <h1 style={{ color: "red" }}>{error.message}</h1>;
@@ -31,12 +31,12 @@ function App() {
     code: "AZZZ23",
     price: 20,
     quantity: 50,
-    company: "Jannone",
+    company: "Zanulo",
   };
 
   console.log("data", data);
   const createNewProduct = () => {
-    product({
+    addProduct({
       variables: myObj,
     });
   };
