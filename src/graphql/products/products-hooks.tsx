@@ -22,19 +22,22 @@ export const useProducts = () => {
     const [currentProduct, setCurrentProduct] = React.useState<ProductProps>(
       initialState?.product
     );
-    const [getProduct] = useLazyQuery(GET_PRODUCT, {
-      errorPolicy: "all",
-      onError: (error) => {
-        const errorMessage = error.message;
-        console.log("error", errorMessage);
-      },
-      onCompleted: (data) => {
-        setCurrentProduct(data?.getProduct);
-        console.log("Product reached: ", data?.getProduct);
-      },
-    });
+    const [getProduct, { loading: productLoading }] = useLazyQuery(
+      GET_PRODUCT,
+      {
+        errorPolicy: "all",
+        onError: (error) => {
+          const errorMessage = error.message;
+          console.log("error", errorMessage);
+        },
+        onCompleted: (data) => {
+          setCurrentProduct(data?.getProduct);
+          console.log("Product reached: ", data?.getProduct);
+        },
+      }
+    );
 
-    return { currentProduct, getProduct };
+    return { currentProduct, getProduct, productLoading };
   };
 
   //

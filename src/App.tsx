@@ -21,7 +21,7 @@ function App() {
     newUserData,
   } = createProduct();
 
-  const { currentProduct, getProduct } = getOneProduct();
+  const { currentProduct, getProduct, productLoading } = getOneProduct();
 
   if (error) {
     return <h1 style={{ color: "red" }}>{error.message}</h1>;
@@ -31,6 +31,14 @@ function App() {
     return (
       <h2 style={{ color: "yellow", fontWeight: "600", fontSize: "48px" }}>
         Loading...
+      </h2>
+    );
+  }
+
+  if (productLoading) {
+    return (
+      <h2 style={{ color: "yellow", fontWeight: "600", fontSize: "48px" }}>
+        Product Loading...
       </h2>
     );
   }
