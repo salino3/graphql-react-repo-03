@@ -8,6 +8,7 @@ function App() {
     getOneProduct,
     createProduct,
     deleteOneProduct,
+    updateDataProduct,
   } = useProducts();
 
   const {
@@ -47,6 +48,15 @@ function App() {
     company: "Zanulo",
   };
 
+  const myObjUpdate = {
+    id: "7096f0bb-6c10-459d-acab-ef7762fc6618",
+    name: "New Product",
+    code: "AZZZ23",
+    price: 120,
+    quantity: 500,
+    company: "Wow!",
+  };
+
   console.log("data", data);
   const createNewProduct = () => {
     addProduct({
@@ -75,6 +85,10 @@ function App() {
             }
           >
             Delete a product
+          </button>
+          <br /> <br />
+          <button onClick={() => updateDataProduct(myObjUpdate)}>
+            Update a product
           </button>
         </div>
       </details>
