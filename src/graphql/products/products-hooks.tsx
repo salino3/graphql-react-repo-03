@@ -1,10 +1,8 @@
 import { useQuery } from "@apollo/client";
-import { ALL_ARRAYS } from "./queries";
+import { ALL_PRODUCTS } from "./queries";
 
+export const useProducts = () => {
+  const allResult = useQuery(ALL_PRODUCTS);
 
-
-export const useProduct = () => {
-  const result = useQuery(ALL_ARRAYS);
-  return result;
+  return { allResult };
 };
-

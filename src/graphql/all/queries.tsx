@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-export const ALL_PRODUCTS = gql`
+export const ALL_DATA = gql`
   query {
     allProducts {
       id
@@ -9,6 +9,14 @@ export const ALL_PRODUCTS = gql`
       code
       price
       company
+    }
+    allUsers {
+      id
+      name
+      email
+      phone
+      gender
+      age
     }
   }
 `;

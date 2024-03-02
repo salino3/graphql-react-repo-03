@@ -1,12 +1,12 @@
-import { useProduct } from './graphql';
-import './App.css'
+import { useProducts } from "./graphql";
+import "./App.css";
 
 function App() {
+  const {
+    allResult: { data, error, loading },
+  } = useProducts();
 
-  const { data, error, loading } = useProduct();
-
-    console.log("data", data);
-
+  if (loading) console.log("data", data);
 
   return (
     <div className="App">
@@ -21,4 +21,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
