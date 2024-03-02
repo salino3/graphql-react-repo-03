@@ -5,10 +5,10 @@ function App() {
   const {
     allResult: { data, error, loading },
     getOneProduct,
-    // createProduct,
+    createProduct,
   } = useProducts();
 
-  // const { product, errorMsg, clearError, clearModal } = createProduct();
+  const { product, errorMsg, clearError, clearModal } = createProduct();
 
   if (error) {
     return <h1 style={{ color: "red" }}>{error.message}</h1>;
@@ -22,21 +22,23 @@ function App() {
     );
   }
 
-  // if (errorMsg) {
-  //   clearError();
-  // }
+  if (errorMsg) {
+    clearError();
+  }
+
+  const myObj = {
+    name: "Tercer producto",
+    code: "AZZZ23",
+    price: 20,
+    quantity: 50,
+    company: "Jannone",
+  };
 
   console.log("data", data);
   const createNewProduct = () => {
-    // product({
-    //   variables: {
-    //     name: "Tercer producto",
-    //     code: "AZZZ23",
-    //     price: 20,
-    //     quantity: 50,
-    //     company: "Jannone",
-    //   },
-    // });
+    product({
+      variables: myObj,
+    });
   };
 
   return (
