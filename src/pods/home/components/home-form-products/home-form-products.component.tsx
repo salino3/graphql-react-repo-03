@@ -1,5 +1,5 @@
 import React from "react";
-import { FormField } from "@/common";
+import { Button, FormField } from "@/common";
 import "./home-form-products.styles.scss";
 
 export const HomeFormProducts: React.FC = () => {
@@ -29,6 +29,10 @@ export const HomeFormProducts: React.FC = () => {
           req
           handleChange={() => {}}
         />
+        <div className="boxBtnsForm">
+          <Button txt="Add" type="submit" />
+          <Button txt="Reset" type="reset" />
+        </div>
       </form>
     </div>
   );

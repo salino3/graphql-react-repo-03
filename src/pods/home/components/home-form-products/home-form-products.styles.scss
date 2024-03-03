@@ -7,8 +7,9 @@
 }
 
 .formProducts {
+  position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   flex-wrap: wrap;
   width: min-content;
@@ -16,14 +17,27 @@
   gap: 5px;
 }
 
+.boxBtnsForm {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  min-height: max-content;
+  gap: 8px;
+  position: relative;
+  left: 20px;
+}
+
 @media screen and (min-width: 390px) {
   .formProducts {
-    width: 390px;
+    width: 100%;
+    max-width: 390px;
   }
 }
 
 @media screen and (min-width: 580px) {
   .formProducts {
-    width: 580px;
+    width: 100%;
+    max-width: 580px;
   }
 }
