@@ -1,0 +1,29 @@
+.rootFormProducts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.formProducts {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: min-content;
+  max-width: 100%;
+  gap: 5px;
+}
+
+@media screen and (min-width: 390px) {
+  .formProducts {
+    width: 390px;
+  }
+}
+
+@media screen and (min-width: 580px) {
+  .formProducts {
+    width: 580px;
+  }
+}

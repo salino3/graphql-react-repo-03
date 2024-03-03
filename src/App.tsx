@@ -1,4 +1,5 @@
 import { useProducts } from "./graphql";
+import { AppRouter } from "./router";
 import { Notify } from "./common";
 import "./App.scss";
 
@@ -85,6 +86,7 @@ function App() {
   return (
     <div className="App">
       <Notify color="green" modalMessage={modalMsg} />
+      <AppRouter />
 
       <h1>Hola</h1>
       <details>
