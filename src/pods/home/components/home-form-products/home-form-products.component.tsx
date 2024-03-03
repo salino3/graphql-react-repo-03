@@ -1,7 +1,7 @@
 import React from "react";
 import { useProducts } from "@/graphql";
 import { ProductProps, initialState } from "@/redux";
-import { Button, FormField } from "@/common";
+import { Button, FormField, Notify } from "@/common";
 import "./home-form-products.styles.scss";
 
 export const HomeFormProducts: React.FC = () => {
@@ -40,8 +40,17 @@ export const HomeFormProducts: React.FC = () => {
     console.log(productData);
   };
 
+  if (errorMsg) {
+    clearError();
+  }
+
+  if (modalMsg) {
+    clearModal();
+  }
+
   return (
     <div className="rootFormProducts">
+      <Notify color="green" modalMessage={modalMsg} />
       <form className="formProducts" onSubmit={handleSubmit}>
         <FormField
           name="name"

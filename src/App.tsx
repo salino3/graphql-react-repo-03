@@ -84,7 +84,7 @@ function App() {
   console.log("currentProduct", currentProduct);
   return (
     <div className="App">
-      <Notify color="green" modalMessage={modalMsg} />
+      {/* <Notify color="green" modalMessage={modalMsg} /> */}
       <AppRouter />
 
       <h1>Hola</h1>

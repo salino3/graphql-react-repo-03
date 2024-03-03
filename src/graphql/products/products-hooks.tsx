@@ -75,6 +75,7 @@ export const useProducts = () => {
         setErrorMsg(null);
       }, 5000);
     };
+
     return {
       addProduct,
       errorMsg,
@@ -108,7 +109,7 @@ export const useProducts = () => {
 
     onError: (error) => {
       const errorMessage = error.graphQLErrors[0]?.message;
-      console.log("Error: ", errorMessage);
+      console.log("Error: ", errorMessage, error);
     },
     onCompleted: (data) => {
       console.log("Product updated: ", data.updateProduct);
