@@ -6,10 +6,11 @@ interface Props {
   type: "submit" | "reset" | "button" | undefined;
   styles?: string | undefined;
   sm?: boolean;
+  click?: React.MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
 export const Button: React.FC<Props> = (props) => {
-  const { txt, type, styles, sm = true } = props;
+  const { txt, type, styles, sm = true, click } = props;
 
   return (
     <div
@@ -17,7 +18,7 @@ export const Button: React.FC<Props> = (props) => {
         sm ? "rootCustomSmallButton" : "rootCustomButton"
       } ${styles}`}
     >
-      <button className="btnCustom" type={type}>
+      <button onClick={click} className="btnCustom" type={type}>
         {txt}
       </button>
     </div>

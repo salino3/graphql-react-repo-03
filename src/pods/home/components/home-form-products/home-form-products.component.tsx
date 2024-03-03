@@ -1,23 +1,42 @@
 import React from "react";
+import { useProducts } from "@/graphql";
 import { ProductProps, initialState } from "@/redux";
 import { Button, FormField } from "@/common";
 import "./home-form-products.styles.scss";
 
 export const HomeFormProducts: React.FC = () => {
-  const [productData, setProductData] = React.useState<ProductProps>(
-    initialState?.product
-  );
+  const { createProduct } = useProducts();
 
-  const handleChange = (key: keyof ProductProps) => (event: any) => {
-    const { name, value } = event.target;
-    setProductData({ ...productData, [key]: value });
-  };
+  const {
+    addProduct,
+    errorMsg,
+    clearError,
+    modalMsg,
+    clearModal,
+    newUserData,
+  } = createProduct();
+
+  const { id, ...productWithoutId } = initialState?.product;
+  const objForm = { ...productWithoutId };
+  const [productData, setProductData] = React.useState<ProductProps>(objForm);
+
+  const handleChange =
+    (key: keyof ProductProps) =>
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const { value } = event.target;
+      const newValue =
+        key === "quantity" || key === "price" ? parseFloat(value) : value;
+      setProductData({ ...productData, [key]: newValue });
+    };
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> | undefined = (
     event: React.FormEvent<HTMLFormElement>
   ) => {
     event.preventDefault();
 
+    addProduct({
+      variables: productData,
+    });
     console.log(productData);
   };
 

@@ -6,7 +6,6 @@ import "./App.scss";
 function App() {
   const {
     allResult: { data, error, loading },
-
     getOneProduct,
     createProduct,
     deleteOneProduct,
@@ -89,7 +88,7 @@ function App() {
       <AppRouter />
 
       <h1>Hola</h1>
-      <details>
+      {/* <details>
         <summary>Home</summary>
         <div>
           <h2>
@@ -113,7 +112,7 @@ function App() {
           <br /> <br />
           <button onClick={hanldeGetProduct}>Get a product</button>
         </div>
-      </details>
+      </details> */}
     </div>
   );
 }

@@ -9,7 +9,7 @@ export const useProducts = () => {
   const allResult = useQuery(ALL_PRODUCTS, {
     errorPolicy: "all",
     onError: (error) => {
-      const errorMessage = error.graphQLErrors[0].message;
+      const errorMessage = error.graphQLErrors[0]?.message;
       console.log("error", errorMessage);
     },
     onCompleted: (data) => {
@@ -53,7 +53,7 @@ export const useProducts = () => {
       errorPolicy: "all",
 
       onError: (error) => {
-        const errorMessage = error.graphQLErrors[0].message;
+        const errorMessage = error.graphQLErrors[0]?.message;
         setErrorMsg(errorMessage);
         console.log("error", errorMessage);
       },
@@ -88,7 +88,7 @@ export const useProducts = () => {
   //
   const deleteProduct = useMutation(DELETE_PRODUCT, {
     onError: (error) => {
-      const errorMessage = error.graphQLErrors[0].message;
+      const errorMessage = error.graphQLErrors[0]?.message;
       console.log("error", errorMessage);
     },
     onCompleted: (data) => {
@@ -107,7 +107,7 @@ export const useProducts = () => {
     errorPolicy: "all",
 
     onError: (error) => {
-      const errorMessage = error.graphQLErrors[0].message;
+      const errorMessage = error.graphQLErrors[0]?.message;
       console.log("Error: ", errorMessage);
     },
     onCompleted: (data) => {

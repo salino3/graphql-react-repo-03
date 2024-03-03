@@ -15,7 +15,7 @@ export const initialState = {
     name: "",
     quantity: 0,
     code: "",
-    price: 0,
+    price: 0.0,
     company: "",
   },
 };
